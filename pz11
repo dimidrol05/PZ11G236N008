@@ -1,0 +1,17 @@
+import pandas as pd
+
+# Загрузка файлов XLSX
+xls1 = pd.read_excel('Машина_1.xlsx')
+xls2 = pd.read_excel('Машина_2.xlsx')
+
+# Создание DataFrames
+df1 = xls1.to_frame()
+df2 = xls2.to_frame()
+
+# Вывод отличающихся строк
+diff = df1.compare(df2)
+
+for column in diff.columns:
+    print('Различия в столбце {}:\n'.format(column))
+    for index, row in diff[column].iterrows():
+        print('Строка {}: {}'.format(index, row))
